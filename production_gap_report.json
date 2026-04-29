@@ -1,0 +1,57 @@
+{
+  "timestamp": "2026-04-29T09:24:01.029351",
+  "results": [
+    {
+      "name": "year_end_pnd1kor",
+      "status": "PASS",
+      "payroll_id": 1,
+      "documents": [
+        {
+          "type": "ภ.ง.ด.1",
+          "id": 1,
+          "deadline": "วันที่ 7 เดือนถัดไป"
+        },
+        {
+          "type": "สปส.1-10",
+          "id": 2,
+          "deadline": "วันที่ 15 เดือนถัดไป"
+        },
+        {
+          "type": "ภ.ง.ด.1ก (ปลายปี)",
+          "id": 3,
+          "deadline": "ภายใน ก.พ. 2027"
+        }
+      ]
+    },
+    {
+      "name": "concurrency_duplicate_attendance",
+      "status": "PASS",
+      "codes": [
+        200,
+        400,
+        400,
+        400,
+        400,
+        400,
+        400,
+        400
+      ]
+    },
+    {
+      "name": "concurrency_payment_dispatch",
+      "status": "PASS",
+      "codes": [
+        200,
+        400,
+        400,
+        400,
+        400
+      ]
+    }
+  ],
+  "summary": {
+    "total": 3,
+    "passed": 3,
+    "failed": 0
+  }
+}

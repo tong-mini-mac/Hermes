@@ -1,0 +1,160 @@
+<mxfile host="app.diagrams.net" agent="Codex-5.3">
+  <diagram id="HERMES-Architecture" name="HERMES Architecture">
+    <mxGraphModel dx="1873" dy="958" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;whiteSpace=wrap;html=1;fontSize=20;fontStyle=1;fontColor=#0f172a;" value="HERMES - Human Resource Management &amp; Event-driven System" vertex="1">
+          <mxGeometry height="30" width="860" x="549" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="u1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8fafc;strokeColor=#94a3b8;fontColor=#0f172a;" value="Employees&#xa;Clock-in/out, Leave Request" vertex="1">
+          <mxGeometry height="70" width="210" x="60" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="u2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eff6ff;strokeColor=#3b82f6;fontColor=#1e3a8a;" value="HR Admin&#xa;Onboarding, Payroll Check, Tax Submit" vertex="1">
+          <mxGeometry height="70" width="230" x="300" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="u3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff7ed;strokeColor=#f97316;fontColor=#9a3412;" value="Manager / CFO&#xa;Leave + Final Payroll Approval" vertex="1">
+          <mxGeometry height="70" width="240" x="560" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="api" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0f172a;strokeColor=#334155;fontColor=#e2e8f0;" value="FastAPI Layer (`app.py`)&#xa;REST Endpoints + Auth + RBAC" vertex="1">
+          <mxGeometry height="80" width="420" x="350" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="ev" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dcfce7;strokeColor=#22c55e;fontColor=#14532d;" value="Event Bus (`hr_bot/events.py`)&#xa;@on_event / emit" vertex="1">
+          <mxGeometry height="70" width="190" x="470" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="coregrp" parent="1" style="swimlane;whiteSpace=wrap;html=1;rounded=1;fillColor=#f8fafc;strokeColor=#64748b;fontColor=#0f172a;startSize=30;" value="Universal Core (~70%)" vertex="1">
+          <mxGeometry height="430" width="980" x="60" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="c1" parent="coregrp" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ecfeff;strokeColor=#14b8a6;fontColor=#134e4a;" value="Onboarding Handler&#xa;employee.created" vertex="1">
+          <mxGeometry height="70" width="220" x="20" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="c2" parent="coregrp" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ecfeff;strokeColor=#14b8a6;fontColor=#134e4a;" value="Attendance Engine&#xa;OT/Late Policy + AI flag" vertex="1">
+          <mxGeometry height="70" width="220" x="260" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="c3" parent="coregrp" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ecfeff;strokeColor=#14b8a6;fontColor=#134e4a;" value="Leave Workflow&#xa;Request / Approve / Reject" vertex="1">
+          <mxGeometry height="70" width="220" x="500" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="c4" parent="coregrp" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ecfeff;strokeColor=#14b8a6;fontColor=#134e4a;" value="Payroll Engine&#xa;Base + OT + Commission + Bonus + Allowance" vertex="1">
+          <mxGeometry height="70" width="220" x="740" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="c5" parent="coregrp" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f3ff;strokeColor=#7c3aed;fontColor=#4c1d95;" value="AI Service&#xa;Anomaly / Pattern Detection" vertex="1">
+          <mxGeometry height="70" width="220" x="20" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="c6" parent="coregrp" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ecfeff;strokeColor=#14b8a6;fontColor=#134e4a;" value="Payment Dispatcher&#xa;Payout orchestration" vertex="1">
+          <mxGeometry height="70" width="220" x="260" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="c7" parent="coregrp" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fefce8;strokeColor=#eab308;fontColor=#713f12;" value="Notification Service&#xa;Email / SMS / In-app" vertex="1">
+          <mxGeometry height="70" width="220" x="500" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="c8" parent="coregrp" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eff6ff;strokeColor=#3b82f6;fontColor=#1e3a8a;" value="Finance Service&#xa;GL Journal Posting" vertex="1">
+          <mxGeometry height="70" width="220" x="740" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="db" parent="coregrp" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#111827;strokeColor=#374151;fontColor=#e5e7eb;" value="SQLite (`hr.db`)&#xa;users / employees / attendance / leave / payroll / tax_documents / finance_journal" vertex="1">
+          <mxGeometry height="90" width="660" x="160" y="302" as="geometry" />
+        </mxCell>
+        <mxCell id="thgrp" parent="1" style="swimlane;whiteSpace=wrap;html=1;rounded=1;fillColor=#fff7ed;strokeColor=#f59e0b;fontColor=#7c2d12;startSize=30;" value="Thailand Plugin Layer (~30%)" vertex="1">
+          <mxGeometry height="430" width="460" x="1080" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="t1" parent="thgrp" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fffbeb;strokeColor=#f59e0b;fontColor=#92400e;" value="Tax TH&#xa;Progressive Tax Rules" vertex="1">
+          <mxGeometry height="70" width="200" x="20" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="t2" parent="thgrp" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fffbeb;strokeColor=#f59e0b;fontColor=#92400e;" value="SSO TH&#xa;5% / cap rules" vertex="1">
+          <mxGeometry height="70" width="200" x="240" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="t3" parent="thgrp" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fffbeb;strokeColor=#f59e0b;fontColor=#92400e;" value="Compliance Docs&#xa;PND1 / SSO 1-10 / PND1KOR" vertex="1">
+          <mxGeometry height="80" width="200" x="20" y="144" as="geometry" />
+        </mxCell>
+        <mxCell id="t4" parent="thgrp" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fffbeb;strokeColor=#f59e0b;fontColor=#92400e;" value="Thai Bank Formats&#xa;SCB / KBANK / BBL" vertex="1">
+          <mxGeometry height="80" width="200" x="244" y="144" as="geometry" />
+        </mxCell>
+        <mxCell id="t5" parent="thgrp" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fffbeb;strokeColor=#f59e0b;fontColor=#92400e;" value="Deadline Rules&#xa;PND1 day 7 / SSO day 15" vertex="1">
+          <mxGeometry height="70" width="200" x="1" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="t6" parent="thgrp" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fffbeb;strokeColor=#f59e0b;fontColor=#92400e;" value="PRISM Integration&#xa;Commission Source" vertex="1">
+          <mxGeometry height="70" width="200" x="235" y="279" as="geometry" />
+        </mxCell>
+        <mxCell id="ext1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#94a3b8;fontColor=#334155;" value="RD Online" vertex="1">
+          <mxGeometry height="40" width="120" x="1120" y="908" as="geometry" />
+        </mxCell>
+        <mxCell id="ext2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#94a3b8;fontColor=#334155;" value="SSO Online" vertex="1">
+          <mxGeometry height="40" width="120" x="1270" y="908" as="geometry" />
+        </mxCell>
+        <mxCell id="ext3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#94a3b8;fontColor=#334155;" value="Finance GL" vertex="1">
+          <mxGeometry height="40" width="120" x="1420" y="908" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="u1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#475569;" target="api">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="u2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#475569;" target="api">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="u3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#475569;" target="api">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="api" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#22c55e;" target="ev">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="ev" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#14b8a6;" target="c1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" source="ev" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#14b8a6;" target="c2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" edge="1" parent="1" source="ev" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#14b8a6;" target="c3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" edge="1" parent="1" source="ev" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#14b8a6;" target="c4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e9" edge="1" parent="1" source="c1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#64748b;" target="db">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e10" edge="1" parent="1" source="c2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#64748b;" target="db">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e11" edge="1" parent="1" source="c3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#64748b;" target="db">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e12" edge="1" parent="1" source="c4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#64748b;" target="db">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e13" edge="1" parent="1" source="c6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#64748b;" target="db">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e14" edge="1" parent="1" source="c8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#64748b;" target="db">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e15" edge="1" parent="1" source="c4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#f59e0b;" target="t1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e16" edge="1" parent="1" source="c4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#f59e0b;" target="t2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e17" edge="1" parent="1" source="c4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#f59e0b;" target="t6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e18" edge="1" parent="1" source="c6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#f59e0b;" target="t4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e19" edge="1" parent="1" source="c6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#f59e0b;" target="t3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e20" edge="1" parent="1" source="t3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#f59e0b;" target="t5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e21" edge="1" parent="1" source="t3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#94a3b8;" target="ext1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e22" edge="1" parent="1" source="t3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#94a3b8;" target="ext2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e23" edge="1" parent="1" source="c8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#94a3b8;" target="ext3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lg1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cbd5e1;fontColor=#334155;" value="Legend:&#xa;Blue/Teal = Universal Core&#xa;Orange = Thailand-specific Plugin&#xa;Purple = AI / anomaly" vertex="1">
+          <mxGeometry height="120" width="460" x="1080" y="90" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
