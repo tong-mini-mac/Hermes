@@ -3,6 +3,8 @@
 **HERMES** is a sample HR workflow platform using **AI + Human in the Loop + Code Bot** across 5 phases:
 Onboarding → Attendance/Leave → Payroll → Payment → Tax/SSO
 
+![HERMES Architecture](./HR-Architecture.png)
+
 ## Quick Start
 
 ```bash
