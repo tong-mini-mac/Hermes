@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+  hermes-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: hermes-api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./hr.db:/app/hr.db
+    restart: unless-stopped

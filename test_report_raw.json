@@ -1,0 +1,302 @@
+{
+  "timestamp": "2026-04-29T09:20:03.480208",
+  "summary": {
+    "total": 20,
+    "passed": 20,
+    "failed": 0
+  },
+  "failed_cases": [],
+  "results": [
+    {
+      "name": "auth.register.first_user.hr_admin",
+      "status": "PASS",
+      "started_at": "2026-04-29T09:20:03.197149",
+      "result": null
+    },
+    {
+      "name": "auth.login.hr_admin",
+      "status": "PASS",
+      "started_at": "2026-04-29T09:20:03.330532",
+      "result": {
+        "status_code": 200,
+        "body": {
+          "access_token": "f465adb25def3f68441533bde2f16e82a6b8bac07e573e19e061b152c5371737",
+          "token_type": "bearer",
+          "role": "hr_admin"
+        }
+      }
+    },
+    {
+      "name": "auth.register.manager.by_hr",
+      "status": "PASS",
+      "started_at": "2026-04-29T09:20:03.338883",
+      "result": null
+    },
+    {
+      "name": "auth.register.cfo.by_hr",
+      "status": "PASS",
+      "started_at": "2026-04-29T09:20:03.346900",
+      "result": null
+    },
+    {
+      "name": "auth.register.by_non_hr_forbidden",
+      "status": "PASS",
+      "started_at": "2026-04-29T09:20:03.367490",
+      "result": null
+    },
+    {
+      "name": "phase1.create_employee.emp1",
+      "status": "PASS",
+      "result": {
+        "message": "✅ Onboarding สำเร็จ",
+        "emp_id": 1,
+        "code_bot_actions": [
+          "Employee profile id=1",
+          "LeaveService.init_quota(1, full-time)",
+          "TaxService.init_profile(1)",
+          "PayrollService.register(1)",
+          "[notify] manager_id=2: พนักงานใหม่เข้าระบบ"
+        ],
+        "onboarding_event": {
+          "status": "onboarding_complete",
+          "actions": [
+            "Employee profile id=1",
+            "LeaveService.init_quota(1, full-time)",
+            "TaxService.init_profile(1)",
+            "PayrollService.register(1)",
+            "[notify] manager_id=2: พนักงานใหม่เข้าระบบ"
+          ]
+        }
+      }
+    },
+    {
+      "name": "phase1.create_employee.emp2",
+      "status": "PASS",
+      "result": {
+        "message": "✅ Onboarding สำเร็จ",
+        "emp_id": 2,
+        "code_bot_actions": [
+          "Employee profile id=2",
+          "LeaveService.init_quota(2, full-time)",
+          "TaxService.init_profile(2)",
+          "PayrollService.register(2)",
+          "[notify] manager_id=2: พนักงานใหม่เข้าระบบ"
+        ],
+        "onboarding_event": {
+          "status": "onboarding_complete",
+          "actions": [
+            "Employee profile id=2",
+            "LeaveService.init_quota(2, full-time)",
+            "TaxService.init_profile(2)",
+            "PayrollService.register(2)",
+            "[notify] manager_id=2: พนักงานใหม่เข้าระบบ"
+          ]
+        }
+      }
+    },
+    {
+      "name": "phase2.attendance.emp1.normal",
+      "status": "PASS",
+      "result": {
+        "emp_id": 1,
+        "work_date": "2026-04-28",
+        "hours_worked": 9.17,
+        "ot_hours": 1.17,
+        "is_late": true,
+        "ai_flagged": true,
+        "flag_reason": "เข้างานสายตามนโยบาย"
+      }
+    },
+    {
+      "name": "phase2.attendance.emp2.flagged",
+      "status": "PASS",
+      "result": {
+        "emp_id": 2,
+        "work_date": "2026-04-28",
+        "hours_worked": 12.33,
+        "ot_hours": 4.33,
+        "is_late": true,
+        "ai_flagged": true,
+        "flag_reason": "OT 4.33 ชม. เกินนโยบาย 3.0 ชม./วัน"
+      }
+    },
+    {
+      "name": "phase2.attendance.duplicate_record",
+      "status": "PASS",
+      "result": {
+        "detail": "Attendance record already exists for this date"
+      }
+    },
+    {
+      "name": "phase2.leave.create",
+      "status": "PASS",
+      "result": {
+        "message": "✅ ยื่นใบลาสำเร็จ รอ Manager อนุมัติ",
+        "leave_id": 1
+      }
+    },
+    {
+      "name": "phase2.leave.manager_approve",
+      "status": "PASS",
+      "result": {
+        "message": "✅ อนุมัติใบลาแล้ว",
+        "leave_id": 1,
+        "status": "approved",
+        "decided_by": "manager1",
+        "code_bot_actions": [
+          "อัปเดต Leave Quota",
+          "Mark attendance leave [simulated]",
+          "[sms/email] emp_id=1: ใบลาของคุณได้รับการอนุมัติแล้ว"
+        ]
+      }
+    },
+    {
+      "name": "phase3.payroll.run",
+      "status": "PASS",
+      "result": {
+        "payroll_id": 1,
+        "month": 4,
+        "year": 2026,
+        "headcount": 2,
+        "total_gross": 93733.37,
+        "total_net": 89276.7,
+        "ai_flags": 0,
+        "ai_summary": "Payroll เดือนนี้ปกติ 2/2 คน",
+        "flagged_count": 0,
+        "flagged_items": [],
+        "recommendation": "ทุกรายการปกติ สามารถ Approve ได้เลย",
+        "next_step": "POST /payroll/{id}/hr_approve → HR ตรวจสอบ"
+      }
+    },
+    {
+      "name": "phase3.payroll.run_duplicate",
+      "status": "PASS",
+      "result": {
+        "detail": "Payroll เดือน 4/2026 มีอยู่แล้ว (id=1)"
+      }
+    },
+    {
+      "name": "phase3.payroll.hr_approve",
+      "status": "PASS",
+      "result": {
+        "message": "✅ HR อนุมัติ Payroll แล้ว",
+        "next_step": "POST /payroll/{id}/cfo_approve → CFO อนุมัติขั้นสุดท้าย"
+      }
+    },
+    {
+      "name": "phase3.payroll.cfo_approve",
+      "status": "PASS",
+      "result": {
+        "message": "✅ CFO อนุมัติ Payroll แล้ว",
+        "next_step": "POST /payment/dispatch?payroll_id={id} → โอนเงิน"
+      }
+    },
+    {
+      "name": "phase4.payment.dispatch",
+      "status": "PASS",
+      "result": {
+        "message": "✅ Payment Dispatched สำเร็จ",
+        "payroll_id": 1,
+        "code_bot_actions": {
+          "bank_files_created": {
+            "SCB": 1,
+            "KBANK": 1
+          },
+          "payslips_sent": 2,
+          "finance_journal_entries": 4,
+          "gl_accounts_posted": [
+            "5100 Salary Expense",
+            "2100 Net Pay",
+            "2200 WHT Payable",
+            "2300 SSO Payable"
+          ]
+        },
+        "dispatcher_detail": {
+          "payroll_id": 1,
+          "bank_files_created": {
+            "SCB": {
+              "bank": "SCB",
+              "lines": 1,
+              "format": "SCB_EFT_v1"
+            },
+            "KBANK": {
+              "bank": "KBANK",
+              "lines": 1,
+              "format": "KBANK_EFT_v1"
+            }
+          },
+          "payslips_sent": 2,
+          "payslip_refs": [
+            "payslip_payroll1_emp1.pdf",
+            "payslip_payroll1_emp2.pdf"
+          ],
+          "finance_journal_entries": 4
+        }
+      }
+    },
+    {
+      "name": "phase5.tax.generate",
+      "status": "PASS",
+      "result": {
+        "message": "✅ สร้างเอกสารภาษีสำเร็จ",
+        "documents": [
+          {
+            "type": "ภ.ง.ด.1",
+            "id": 1,
+            "deadline": "วันที่ 7 เดือนถัดไป"
+          },
+          {
+            "type": "สปส.1-10",
+            "id": 2,
+            "deadline": "วันที่ 15 เดือนถัดไป"
+          }
+        ],
+        "next_step": "HR ตรวจสอบและยื่น RD Online / SSO Online"
+      }
+    },
+    {
+      "name": "phase5.tax.submit",
+      "status": "PASS",
+      "result": {
+        "message": "✅ ยืนยันยื่นเอกสาร PND1 แล้ว",
+        "submitted_at": "2026-04-29T09:20:03.473690"
+      }
+    },
+    {
+      "name": "dashboard.summary",
+      "status": "PASS",
+      "result": {
+        "employees": {
+          "active": 2
+        },
+        "attendance": {
+          "ai_flagged_total": 2
+        },
+        "leave": {
+          "pending_approval": 0
+        },
+        "payroll": {
+          "id": 1,
+          "month": 4,
+          "year": 2026,
+          "status": "paid",
+          "total_gross": 93733.37,
+          "total_tax": 2956.67,
+          "total_sso": 1500.0,
+          "total_net": 89276.7,
+          "headcount": 2,
+          "ai_flags": 0,
+          "approved_by_hr": 1,
+          "approved_by_cfo": 3,
+          "hr_approved_at": "2026-04-29T09:20:03.439658",
+          "cfo_approved_at": "2026-04-29T09:20:03.447417",
+          "created_at": "2026-04-29 02:20:03"
+        },
+        "tax_documents": {
+          "pending_submission": 1
+        },
+        "ai_insight": "มีใบลารอ Approve 0 ใบ | เอกสารภาษีรอยื่น 1 ฉบับ"
+      }
+    }
+  ]
+}
